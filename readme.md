@@ -3,7 +3,7 @@
 Soul uses a stripped down version of the starter theme Plate by Joshua Michaels & Jon Iler for studio.bio
 
 Author: John Basham
-..
+....
 Codekit config file included.
 
 *******************************************************************
