@@ -1,0 +1,404 @@
+/*--- HEADER TEMPLATE ---*/
+.header {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+/*--- HOME TEMPLATE ---*/
+.home {
+
+    h4, .h4 {
+        color: $light-blue;
+    }
+    
+    h1 { 
+        font-size: 0px; 
+        color: rgba(0,0,0,0); 
+    }​
+
+    article header {
+         width: 100vw;
+         height: 100vh;
+         position: absolute;
+         left: 0;
+    }
+
+    section {
+        &.welcome, &.process, &.about {
+            padding: 150px 10px;
+        }
+    }
+    
+    .landing { 
+        .hero-text-1 { 
+            height: 100vh;
+            align-items: center;
+            text-align: center; 
+        }
+    
+        .hero-text-2 {
+            height: 50vh;
+            text-align:center;
+        }
+    
+        .hero-text-1, .hero-text-2 {           
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        img {
+            width: 270px;
+        }
+    }
+
+    .about-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        .text {
+            grid-column: 1/3;
+            color: $dark-black;
+            h2 {color: $dark-black;}
+            margin-right: 100px;
+        }
+        .image {
+            grid-column: 3/4;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 50%;
+        }      
+    }
+}
+
+/*--- ABOUT TEMPLATE ---*/
+.about {
+    
+    .main { 
+        background-color: #252f38;
+        position: relative;
+        z-index: -2;
+    }
+    
+    .grid {
+        grid-template-areas: 'image image image image . text text text text text text';
+
+        .text {
+            grid-area: text;
+        }
+        .image {
+            grid-area: image; 
+            border-radius: 50%;  
+        }
+    }
+    
+    .article-header {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            width: 100%;
+        }
+    }
+    
+    section {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        &:last-of-type {
+            padding-bottom: 100px;
+          }
+    }
+}
+
+/*--- BLOG / JOURNEYS TEMPLATE ---*/
+.blog, .archive {
+    background-color: $journal-post-bg;
+
+    .page-header {
+        padding-top: 200px;
+        
+        h1 { 
+            margin: 0 auto;
+            max-width: 1100px; 
+            padding: 30px;
+            display: block;
+            text-align: center;
+        }
+    }  
+
+    [data-responsive-background-image] {
+        background-size: contain;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+    }
+
+    .grid {
+        // grid-template-areas: 'posts posts posts posts posts . posts posts posts posts posts';
+        padding-top: 200px;        
+    }
+    
+    .posts { 
+        grid-area: posts; 
+        display: flex; 
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+    
+    .post {
+        max-width: 1100px;
+        margin-bottom: 50px;
+        color: $light-blue;
+        display: flex;
+        justify-content: space-between;
+
+        &:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        h1 {
+            font-size: 16px;
+            text-transform: uppercase;
+        }        
+
+        p {
+            font-size: 14px;
+        }
+
+        img {
+        
+        }
+        
+        .container { 
+            max-width: 500px;
+            margin: 25px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .article-header { 
+                display: block;                
+            }
+            .entry-content {  }
+         }
+        
+        .article-footer {  
+            max-width: 500px;
+            margin: 25px;
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            
+            filter: saturate(.5);
+            transition-property: filter;
+            transition-duration: .5s;
+            
+            &:hover {
+                filter: saturate(1);
+                
+            }
+        }
+    }
+
+    .aside { grid-area: aside; }
+
+    .background {
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        width: 100%;
+    }
+
+    .tagcloud > a {
+        color: $white;
+        text-transform: uppercase;
+    }
+}
+
+/*--- SINGLE POST TEMPLATE ---*/
+.single {
+    background-color: $journal-post-bg;
+    
+    [data-responsive-background-image] {
+        background-size: contain;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+    }
+    
+    .main {
+        padding: 150px 0;
+    }
+    .post {
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: #536e74b3;
+    }
+    .meta, .entry-title, .entry-content {
+        padding: 0 100px;
+    }
+    .meta {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 100px;
+    }
+    .article-header {
+        img {
+            height: 500px;
+            filter: contrast(0.8);
+        }
+    }
+
+    .article-footer{
+        padding: 0px 100px 90px 100px;
+    }
+}
+
+/*--- CONTACT TEMPLATE ---*/
+.contact {
+    background-color: #2e3a29;
+
+    .article-header {
+        padding-top: 200px;
+        
+        h1 { 
+            margin: 0 auto;
+            max-width: 700px; 
+            padding-bottom: 20px;
+        }
+        img {
+            position: absolute;
+            top: 0;
+            z-index: -1;
+            width: 100%;
+        }
+    }  
+
+    .page {
+        section {
+            max-width: 700px;
+            margin: 0 auto 100px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .text {
+            max-width: 300px;
+        }
+        form {
+            max-width: 300px;
+            p:first-of-type {
+                margin-top: 0;
+            }
+            label {
+                font-size: 10px;
+            }
+            input {
+                height: 40px;
+                font-size: 14px;
+                border: none;
+                padding-left: 10px;
+            }
+            .wpcf7-submit {
+                width: 100px;
+                border-radius: 20px;
+                margin-left: calc(100% - 100px);
+                margin-top: 25px;
+            }
+        }
+        .social, .updates {
+            max-width: 300px;
+
+            .text {
+                margin-bottom: 20px;
+            }
+            h5 { margin-bottom:20px; }
+            
+            a { color: $white; }
+
+            svg {
+                position: relative;
+                top: 4px;
+                margin-right: 7px;
+            }
+        }
+    } 
+}
+
+/*--- FOOTER STYLES ---*/
+.footer {
+    clear: both; // are you really still using floats? Tsk, tsk.
+    background-color: $dark-black;
+    width: 100%;
+    height: 350px;
+    position: relative;
+
+    .logo img {
+        width: 200px;
+    }
+
+    .inner-footer {
+        max-width: 1100px; // adjust to your content width or remove for full-width
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .details {
+        font-size: 11px;
+
+        a {
+            color: #707070; 
+        }
+    }
+
+    .copyright { 
+        position: absolute;
+        display: block;
+        bottom: 10px;
+        max-width: 1100px;
+        color: #707070;
+        font-size: .5em;
+        margin: 0 auto;
+        text-align: center;
+        width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        a {
+            color: #707070;
+        }
+    }
+}
+
+/*--- ARCHIVE TEMPLATE ---*/
+.archive {
+    
+    [data-responsive-background-image] {
+        background-size: cover;
+
+    }
+}
+
+
+/*--- 404 TEMPLATE ---*/
+.error404 {
+    
+    background-color: $dark-blue;
+    section {
+        max-width: 700px;
+        margin: 100px auto;
+    }
+}

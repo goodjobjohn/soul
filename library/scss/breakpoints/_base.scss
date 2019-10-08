@@ -21,14 +21,17 @@ site-wide stuffs.
 
 html {
     font-size: 1em; // 1em = 16px; Adjust if you want a different baseline.
+    display: flex;
+    justify-content: center;
 }
 
 body {
-    color: #333333;
+    color: $white;
     font-size: 100%;
     font-family: $sans;
     line-height: 1.5;
-
+    width: 100%;
+    //background-color: #ccc;
     // Adjust for your type
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -41,11 +44,18 @@ img {
     height: auto;
 }
 
-/*********************
+/********************
 LAYOUT & GRID STYLES
 *********************/
 
-.wrap {}
+// body {    
+//     display: grid;
+//     grid-template-columns: repeat(11, 1fr);
+// }
+
+// header, footer { grid-column: 1/12; }
+
+// main, aside { grid-column: 2/11; }
 
 /*********************
 LINK STYLES
@@ -94,10 +104,11 @@ further. Using correct headings helps with readability, SEO, and accessibility.
 /* Heading defaults */
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     margin: 1.333em 0 0.5em;
-    color: lighten($sb-black, 12%);
-    font-weight: 500;
+    color: $white;
+    font-weight: bold;
     line-height: 1.2;
     text-rendering: optimizelegibility;
+    // etter-spacing: .1em;
 
     /*
     if you're going to use webfonts, be sure to check your weights
@@ -111,6 +122,11 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     a {
         text-decoration: none;
     }
+}
+
+.hero {
+    font-size: 4.157em;
+    text-align: center;
 }
 
 h1, .h1 {
@@ -141,40 +157,54 @@ h6, .h6 {
     letter-spacing: 4.333px;
 }
 
+.section-title, .widgettitle {
+    text-transform: uppercase;
+    font-size: .6em;
+    letter-spacing: 2px;
+    display: block;
+    width: 200px;
+    border-bottom: 1px solid $mid-blue;
+    padding-bottom: 5px;
+}
+
 /*********************
 HEADER STYLES
 *********************/
 
 .header {
-    background: #efefef;
-}
+        z-index: 999;
+        // fix for new header.php schema layout
+    #inner-header {
+        display: flex; 
+        justify-content: space-between;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
 
-// fix for new header.php schema layout
-#inner-header {
-    display: flex; 
-}
+    #site-title {
+        margin: 0 0.5em 0 0;
+        font-size: 2em;
+        line-height: inherit;
+        a {
+            color: lighten($sb-black, 12%);
+        }
+    }
 
-#site-title {
-    margin: 0 0.5em 0 0;
-    font-size: 2em;
-    line-height: inherit;
-    a {
-        color: lighten($sb-black, 12%);
+    #bloginfo {
+        display: flex;
+    }
+
+    #logo {
+        margin-right: 8px;
+        margin-top: 2px;
+        img {
+            // replace /library/images/logo.svg and adjust for your logo size
+            width: 200px;
+        }
     }
 }
 
-#bloginfo {
-    display: flex;
-}
 
-#logo {
-    margin-right: 8px;
-    img {
-        // replace /library/images/logo.svg and adjust for your logo size
-        width: 50px;
-        height: 50px;
-    }
-}
 
 /*********************
 LIST STYLES
@@ -217,18 +247,24 @@ ul, ol {
 NAVIGATION STYLES
 *********************/
 
-/* 
-Where did the nav menu go?
-Navigation styles for mobile are now in 767down.scss
-if you need them.
+.nav {
+    position: relative;
 
-We almost always use the Responsive Menu plugin:
-https://wordpress.org/plugins/responsive-menu/ for mobile
-menus but those selectors are there if you want to use the
-default menu.
+    a, a:visited {
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: $white;
+        
+        &:hover, &:focus {
+            text-decoration: none;
+            border-bottom: 1px solid;
+            margin-bottom: -2px;
+        }
+    }
+    
 
-For your main navigation, styles are in 768up.scss.
-*/
+}
 
 /********************
 WORDPRESS BODY CLASSES
@@ -770,18 +806,4 @@ aside {}
 
 .no-widgets {}
 
-/*********************
-FOOTER STYLES
-*********************/
 
-.footer {
-    clear: both; // are you really still using floats? Tsk, tsk.
-}
-
-.footer-links {
-    ul {
-        li {}
-    }
-}
-
-.copyright {}

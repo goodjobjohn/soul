@@ -53,21 +53,15 @@
 	<body <?php body_class(); ?> itemscope itemtype="https://schema.org/WebPage">
 
         <?php // remove grid classes below if you aren't using CSS Grid (but you should) ?>
-		<div id="container" class="grid grid-aside">
+		<!-- <div id="container" class="grid grid-aside"> -->
 
-			<header class="header" id="header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
+			<header id="header" class="header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
 
                 <div id="inner-header" class="wrap">
 
                     <?php // updated with proper markup and wrapping div for organization ?>
                     <div id="bloginfo" itemscope itemtype="https://schema.org/Organization">
 
-                        <?php 
-                        /*
-                        * You can use text or a logo (or both) in your header. If you use both, 
-                        * try placing them in a single link element for better accessibility.
-                        */
-                        ?>
                         <?php if (has_custom_logo()) { ?>
 
                             <div id="logo" itemprop="logo">
@@ -88,12 +82,6 @@
                                 </a>
                             </div>
 
-                            <div id="site-title" class="site-title" itemprop="name">
-                                <a href="<?php echo home_url(); ?>" rel="nofollow" itemprop="url" title="<?php bloginfo('name'); ?>">
-                                    <?php bloginfo('name'); ?>
-                                </a>
-                            </div>
-
                         <?php } ?>
                         
                     </div>
@@ -110,12 +98,30 @@
                             'container' => false,                          // remove nav container
                             'container_class' => 'menu',                   // class of container (should you choose to use it)
                             'menu' => __( 'The Main Menu', 'platetheme' ), // nav name
-                            'menu_class' => 'nav top-nav main-menu',       // adding custom nav class
+                            'menu_class' => 'nav top-nav main-menu desktop',       // adding custom nav class
                             'theme_location' => 'main-nav',                // where it's located in the theme
 
                             )
                         ); ?>
 
+                        <div id="menuToggle">
+                            
+                            <input type="checkbox" />
+                            <span class="top"></span>
+                            <span class="bottom"></span>
+                            
+                            <?php wp_nav_menu( array(
+
+                                'container' => false,                          // remove nav container
+                                'container_class' => 'menu',                   // class of container (should you choose to use it)
+                                'menu' => __( 'The Main Menu', 'platetheme' ), // nav name
+                                'menu_class' => 'nav top-nav main-menu mobile',       // adding custom nav class
+                                'theme_location' => 'main-nav',                // where it's located in the theme
+
+                                )
+                            ); ?>
+                        </div>
+                        
                     </nav>
 
                 </div>

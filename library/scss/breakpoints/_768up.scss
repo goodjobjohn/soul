@@ -45,6 +45,11 @@ LAYOUT & GRID STYLES
     padding: 1em 1.5em;
 }
 
+.max {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
 /*********************
 HEADER STYLES
 *********************/
@@ -67,6 +72,10 @@ nav {}
     // class on the main navigation nav element
     display: flex;
     align-items: center; // centers nav links vertically in header
+    
+    #menuToggle {
+        display: none;
+    }
 }
 
 .nav { // the ul element
@@ -82,16 +91,8 @@ nav {}
         a {
             display: block;
             border-bottom: 0;
-            padding: 0 0.5em;
+            margin: 0 0.9em;
             text-decoration: none;
-
-            /*
-            you can use hover styles here even though this size
-            has the possibility of being a mobile device.
-            */
-            &:hover, &:focus {
-                text-decoration: underline;
-            }
         }
 
         &:first-child {}

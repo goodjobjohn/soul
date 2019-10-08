@@ -42,29 +42,12 @@ the whole project.
 // import mixins
 @import "partials/mixins";
 
-// CSS Grid...it's time
-@import "partials/cssgrid";
+// CSS parallax
+@import "partials/parallax";
 
-/* Ye Olde Bones Grid
-* Hear Ye, hear ye!
-* This is the old style grid, now commented out
-* You *should* make the move to css grid now but
-* if you need this or can't let go, it's still here
-* so uncomment to use (and comment the cssgrid out).
-* Just know that Rachel Andrew is watching.
-*/
-// @import "partials/grid";
+// Template Parts
+@import "partials/templates";
 
-/**
-* Gutenberg Styles.
-*
-* Now enqueued in a separate function in functions.php to
-* keep styles out of the main stylesheet. Alternatively
-* you can comment out the Gutenberg styles enqueue and 
-* uncomment this below to have a single stylesheet.
-* You do you.
-*/
-// @import "partials/gutenberg";
 
 /*********************
 IMPORTING MODULES
@@ -82,6 +65,10 @@ you hate oysters, then the world is your peanut butter & jelly sandwich.
 
 // forms (inputs & labels)
 @import "modules/forms";
+
+// utilities
+@import "modules/utilities";
+
 
 /*********************
 BASE STYLESHEET
@@ -130,65 +117,13 @@ you can add resource intensive styles.
     @import "breakpoints/768up";
 }
 
-// end of media query
-
-@media only screen and (max-width: 899px) {
-    // styles in 899down.scss
-    @import "breakpoints/899down";
-}
-
-// end of media query
-
-@media only screen and (max-width: 1029px) {
-    // styles in 1029down.scss
-    @import "breakpoints/1029down";
-}
-
-// end of media query
-
-/*********************
-TWEENER
-This targets some trickier 'tweener' devices like large
-tablets. You probably won't need to add too much to this stylesheet.
-If you're not using it, delete it.
-*********************/
-
-@media only screen and (min-width: 900px) {
-    // styles in 900up.scss
-    @import "breakpoints/900up";
-}
-
-/*********************
-DESKTOP
-This is the average viewing window. So Desktops, Laptops, and
-in general anyone not viewing on a mobile device. Here's where
-you can add resource intensive styles.
-*********************/
-@media only screen and (min-width: 1030px) {
-    // styles in 1030up.scss
-    @import "breakpoints/1030up";
-}
-
-// end of media query
-
 /*********************
 LARGE VIEWING SIZE
 This is for the larger monitors and possibly full screen viewers.
 *********************/
-@media only screen and (min-width: 1240px) {
-    // styles in 1240up.scss
-    @import "breakpoints/1240up";
-}
-
-// end of media query
-
-/*********************
-HIMALAYA XL 9000 SIZE
-This is for super ginormous monitors like your one friend has.
-*********************/
-@media only screen and (min-width: 1600px) {
-    // styles in 1600up.scss
-    @import "breakpoints/1600up";
+@media only screen and (min-width: 1100px) {
+    // styles in 1100up.scss
+    @import "breakpoints/1100up";
 }
 
 // end of media query

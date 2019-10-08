@@ -34,7 +34,7 @@ function plate_remove_dashboard_widgets() {
     remove_meta_box('dashboard_secondary','dashboard','side'); // Other WordPress News
     remove_meta_box('dashboard_incoming_links','dashboard','normal'); // Incoming Links
     remove_meta_box('dashboard_plugins','dashboard','normal'); // Plugins
-    remove_meta_box('dashboard_right_now','dashboard', 'normal'); // Right Now
+    // remove_meta_box('dashboard_right_now','dashboard', 'normal'); // Right Now
     remove_meta_box('rg_forms_dashboard','dashboard','normal'); // Gravity Forms
     remove_meta_box('dashboard_recent_comments','dashboard','normal'); // Recent Comments
     remove_meta_box('icl_dashboard_widget','dashboard','normal'); // Multi Language Plugin
@@ -65,7 +65,7 @@ function plate_login_title() { return get_option( 'blogname' ); }
 // calling it only on the login page
 add_action( 'login_enqueue_scripts', 'plate_login_css', 10 );
 add_filter( 'login_headerurl', 'plate_login_url' );
-add_filter( 'login_headertitle', 'plate_login_title' );
+add_filter( 'login_headertext', 'plate_login_title' );
 
 
 /*********************
@@ -93,7 +93,7 @@ add_action( 'admin_enqueue_scripts', 'plate_admin_css', 10 );
 add_filter( 'admin_footer_text', 'plate_custom_admin_footer' );
 
 function plate_custom_admin_footer() {
-	_e( '<span id="footer-thankyou">Developed by <a href="https://studio.bio" target="_blank">studio.bio</a></span>. Built using <a href="https://studio.bio/themes/plate" target="_blank">Plate</a>.', 'platetheme' );
+	_e( '<span id="footer-thankyou">Developed by <a href="https://flowforest.com" target="_blank">Flow Forest</a></span>.', 'platetheme' );
 }
 
 ?>

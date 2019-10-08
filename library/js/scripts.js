@@ -182,3 +182,59 @@ jQuery(document).ready(function($) {
     $('p > img').unwrap();
 
 }); /* end of as page load scripts */
+
+
+// RESPONSIVE BACKGROUND IMAGES
+// grabs image src from an image tag 
+// adds image src to specified element as inline css background-image
+
+class ResponsiveBackgroundImage {
+
+    constructor(element) {
+        this.element = element;
+        this.img = element.querySelector('img.bg-swap');
+        this.src = '';
+
+        this.img.addEventListener('load', () => {
+            this.update();
+        });
+
+        if (this.img.complete) {
+            this.update();
+        }
+    }
+
+    update() {
+        let src = typeof this.img.currentSrc !== 'undefined' ? this.img.currentSrc : this.img.src;
+        if (this.src !== src) {
+            this.src = src;
+            this.element.style.backgroundImage = 'url("' + this.src + '")';
+
+        }
+    }
+}
+
+let elements = document.querySelectorAll('[data-responsive-background-image]');
+for (let i=0; i<elements.length; i++) {
+  new ResponsiveBackgroundImage(elements[i]);
+}
+
+// ANIMATION on HOME
+let animation = document.getElementById("lottie");
+
+if (animation) {
+    
+    // Add class to Homepage animation to so it fades out
+    setTimeout(function(){
+        animation.classList.add('fade-out');
+    }, 3000);
+
+    // Don't display animation after the fade out and prevent
+    // it from blocking elements under it
+    setTimeout(function(){
+        animation.style.display = "none";    
+    }, 4000);
+
+}
+
+

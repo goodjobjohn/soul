@@ -147,6 +147,19 @@ function plate_register_sidebars() {
 
         )
     );
+    
+    register_sidebar( array(
+
+            'id' => 'footerwidget',
+            'name' => __( 'Footer Widget', 'platetheme' ),
+            'description' => __( 'Contact info in footer', 'platetheme' ),
+            'before_widget' => '<div id="%1$s" class="widget %2$s">',
+            'after_widget' => '</div>',
+            'before_title' => '<h4 class="widgettitle">',
+            'after_title' => '</h4>',
+
+        )
+    );
 
 	/*
 	to add more sidebars or widgetized areas, just copy
@@ -417,7 +430,7 @@ function plate_scripts_and_styles() {
     if ( !is_admin() ) {
 
         // modernizr (3.6.0 2018-04-17)
-        wp_enqueue_script( 'modernizr', get_theme_file_uri() . '/library/js/libs/modernizr-custom-min.js', array(), '3.6.0', false );
+        // wp_enqueue_script( 'modernizr', get_theme_file_uri() . '/library/js/libs/modernizr-custom-min.js', array(), '3.6.0', false );
 
         // register main stylesheet
         wp_enqueue_style( 'plate-stylesheet', get_theme_file_uri() . '/library/css/style.css', array(), '', 'all' );
@@ -432,7 +445,7 @@ function plate_scripts_and_styles() {
         wp_enqueue_script( 'plate-js', get_theme_file_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
 
         // accessibility (a11y) scripts
-        wp_enqueue_script( 'plate-a11y', get_theme_file_uri() . '/library/js/a11y.js', array( 'jquery' ), '', true );
+        // wp_enqueue_script( 'plate-a11y', get_theme_file_uri() . '/library/js/a11y.js', array( 'jquery' ), '', true );
 
         $wp_styles->add_data( 'plate-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
 
@@ -529,37 +542,37 @@ function disable_emojicons_tinymce( $plugins ) {
 * I'm commenting this out by default. Why? Because Gravity Forms *requires* it
 * for some form functions to work...***eye roll***. 
 */
-// add_action( 'wp_default_scripts', 'plate_dequeue_jquery_migrate' );
+add_action( 'wp_default_scripts', 'plate_dequeue_jquery_migrate' );
 
-// function plate_dequeue_jquery_migrate( $scripts ) {
+function plate_dequeue_jquery_migrate( $scripts ) {
 
-//     if (! empty( $scripts->registered['jquery'] ) ) {
+    if (! empty( $scripts->registered['jquery'] ) ) {
 
-//         $jquery_dependencies = $scripts->registered['jquery']->deps;
+        $jquery_dependencies = $scripts->registered['jquery']->deps;
 
-//         $scripts->registered['jquery']->deps = array_diff( $jquery_dependencies, array( 'jquery-migrate' ) );
+        $scripts->registered['jquery']->deps = array_diff( $jquery_dependencies, array( 'jquery-migrate' ) );
 
-//     }
+    }
 
-// }
+}
 
 // Remove wp-embed.min.js from the front end. Commented out by default as you may need it.
 // See here: https://wordpress.stackexchange.com/questions/211701/what-does-wp-embed-min-js-do-in-wordpress-4-4
-// add_action( 'init', function() {
+add_action( 'init', function() {
   
-//       // Remove the REST API endpoint.
-//       remove_action('rest_api_init', 'wp_oembed_register_route');
+      // Remove the REST API endpoint.
+      remove_action('rest_api_init', 'wp_oembed_register_route');
   
-//       // Turn off oEmbed auto discovery.
-//       // Don't filter oEmbed results.
-//       remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
+      // Turn off oEmbed auto discovery.
+      // Don't filter oEmbed results.
+      remove_filter('oembed_dataparse', 'wp_filter_oembed_result', 10);
   
-//       // Remove oEmbed discovery links.
-//       remove_action('wp_head', 'wp_oembed_add_discovery_links');
+      // Remove oEmbed discovery links.
+      remove_action('wp_head', 'wp_oembed_add_discovery_links');
   
-//       // Remove oEmbed-specific JavaScript from the front-end and back-end.
-//       remove_action('wp_head', 'wp_oembed_add_host_js');
-//   }, PHP_INT_MAX - 1 );
+      // Remove oEmbed-specific JavaScript from the front-end and back-end.
+      remove_action('wp_head', 'wp_oembed_add_host_js');
+  }, PHP_INT_MAX - 1 );
 
 
 // Remove the p from around imgs (http://css-tricks.com/snippets/wordpress/remove-paragraph-tags-from-around-images/)
@@ -574,12 +587,14 @@ function plate_filter_ptags_on_images( $content ) {
 
 }
 
+// Add shortcode functionality to ACF text fields
+add_filter('acf/format_value/type=text', 'do_shortcode');
 
-// Simple function to remove the [...] from excerpt and add a 'Read More »' link.
+// Simple function to remove the [...] from excerpt and add a 'Read More ï¿½' link.
 function plate_excerpt_more($more) {
     global $post;
     // edit here if you like
-    return '...  <a class="excerpt-read-more" href="'. get_permalink( $post->ID ) . '" title="'. __( 'Read ', 'platetheme' ) . esc_attr( get_the_title( $post->ID ) ).'">'. __( 'Read more &raquo;', 'platetheme' ) .'</a>';
+    return '...  <a class="excerpt-read-more" href="'. get_permalink( $post->ID ) . '" title="'. __( 'Read ', 'platetheme' ) . esc_attr( get_the_title( $post->ID ) ).'">'. __( 'Read more >', 'platetheme' ) .'</a>';
 }
 
 
@@ -598,44 +613,44 @@ function plate_theme_support() {
     set_post_thumbnail_size(125, 125, true);
 
     // wp custom background (thx to @bransonwerner for update)
-    add_theme_support( 'custom-background', array(
+    // add_theme_support( 'custom-background', array(
 
-        'default-image' => '',    // background image default
-        'default-color' => '',    // background color default (dont add the #)
-        'wp-head-callback' => '_custom_background_cb',
-        'admin-head-callback' => '',
-        'admin-preview-callback' => '',
+    //     'default-image' => '',    // background image default
+    //     'default-color' => '',    // background color default (dont add the #)
+    //     'wp-head-callback' => '_custom_background_cb',
+    //     'admin-head-callback' => '',
+    //     'admin-preview-callback' => '',
 
-        )
-    );
+    //     )
+    // );
 
     // Custom Header Image
-    add_theme_support( 'custom-header', array(
+    // add_theme_support( 'custom-header', array(
 
-            'default-image'      => get_template_directory_uri() . '/library/images/header-image.png',
-            'default-text-color' => '000',
-            'width'              => 1440,
-            'height'             => 220,
-            'flex-width'         => true,
-            'flex-height'        => true,
-            'header-text'        => true,
-            'uploads'            => true,
-            'wp-head-callback'   => 'plate_style_header',
+    //         'default-image'      => get_template_directory_uri() . '/library/images/header-image.png',
+    //         'default-text-color' => '000',
+    //         'width'              => 1440,
+    //         'height'             => 220,
+    //         'flex-width'         => true,
+    //         'flex-height'        => true,
+    //         'header-text'        => true,
+    //         'uploads'            => true,
+    //         'wp-head-callback'   => 'plate_style_header',
 
-        ) 
-    );
+    //     ) 
+    // );
 
     // Custom Logo
-    add_theme_support( 'custom-logo', array(
+    // add_theme_support( 'custom-logo', array(
 
-        'height'      => 100,
-        'width'       => 100,
-        'flex-height' => true,
-        'flex-width'  => true,
-        'header-text' => array( 'site-title', 'site-description' ),
+    //     'height'      => 100,
+    //     'width'       => 100,
+    //     'flex-height' => true,
+    //     'flex-width'  => true,
+    //     'header-text' => array( 'site-title', 'site-description' ),
 
-        ) 
-    );
+    //     ) 
+    // );
 
     // rss thingy
     add_theme_support( 'automatic-feed-links' );
@@ -644,7 +659,7 @@ function plate_theme_support() {
     register_nav_menus( array(
 
         'main-nav' => __( 'The Main Menu', 'platetheme' ),   // main nav in header
-        // 'footer-links' => __( 'Footer Links', 'platetheme' ) // secondary nav in footer. Uncomment to use or edit.
+        'footer-links' => __( 'Footer Links', 'platetheme' ) // secondary nav in footer. Uncomment to use or edit.
 
         )
     );
@@ -667,37 +682,6 @@ function plate_theme_support() {
         ) 
     );
 
-    /* 
-    * POST FORMATS
-    * Ahhhh yes, the wild and wonderful world of Post Formats. 
-    * I've never really gotten into them but I could see some
-    * situations where they would come in handy. Here's a few
-    * examples: https://www.competethemes.com/blog/wordpress-post-format-examples/
-    * 
-    * This theme doesn't use post formats per se but we need this 
-    * to pass the theme check.
-    * 
-    * We may add better support for post formats in the future.
-    * 
-    * If you want to use them in your project, do so by all means. 
-    * We won't judge you. Ok, maybe a little bit.
-    *
-    */
-
-    add_theme_support( 'post-formats', array(
-
-        'aside',             // title less blurb
-        'gallery',           // gallery of images
-        'link',              // quick link to other site
-        'image',             // an image
-        'quote',             // a quick quote
-        'status',            // a Facebook like status update
-        'video',             // video
-        'audio',             // audio
-        'chat'               // chat transcript
-
-        )
-    );
 
     // Gutenberg support: https://www.billerickson.net/getting-your-theme-ready-for-gutenberg/
     // https://wordpress.org/gutenberg/handbook/extensibility/theme-support/
@@ -1080,92 +1064,6 @@ function plate_posted_on() {
 endif;
 
 
-// Post Time function (from WP Twenty Seventeen theme)
-if ( ! function_exists( 'plate_time_link' ) ) :
-/**
- * Gets a nicely formatted string for the published date.
- */
-function plate_time_link() {
 
-    $time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
-    // if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
-    //   $time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
-    // }
-
-    $time_string = sprintf( $time_string,
-        get_the_date( DATE_W3C ),
-        get_the_date(),
-        get_the_modified_date( DATE_W3C ),
-        get_the_modified_date()
-    );
-
-    // Wrap the time string in a link, and preface it with 'Posted on'.
-    return sprintf(
-
-        /* translators: %s: post date */
-        __( '<span class="screen-reader-text">Posted on</span> %s', 'platetheme' ),
-        '<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-
-    );
-}
-endif;
-
-
-/** 
- * Dashboard Widget
- * 
- * Add a widget to the dashboard in the WP Admin.
- * Great to add instructions or info for clients.
- *  
- * If you don't need/want this, just remove it or 
- * comment it out.
- * 
- * Customize it...yeaaaahhh...but don't criticize it.
- * 
- * 
- */
-
-function plate_add_dashboard_widgets() {
-
-    // Call the built-in dashboard widget function with our callback
-    wp_add_dashboard_widget(
-        'plate_dashboard_widget', // Widget slug. Also the HTML id for styling in admin.scss.
-        __( 'Welcome to Plate!', 'platetheme' ), // Title.
-        'plate_dashboard_widget_init' // Display function (below)
-    );
-}
-add_action( 'wp_dashboard_setup', 'plate_add_dashboard_widgets' );
-
-// Create the function to output the contents of our Dashboard Widget.
-function plate_dashboard_widget_init() {
-
-    // helper vars for links and images and stuffs.
-    $url = get_admin_url();
-    $img = get_theme_file_uri() . '/library/images/logo.svg';
-
-    echo '<div class="dashboard-image"><img src=' . $img . '" width="96" height="96" /></div>';
-    echo '<h3>You\'ve arrived at the WordPress Dashboard aka the \'Site Admin\' or \'WordPress Admin\' or simply the \'Admin\'.</h3>'; 
-    echo '<p><strong>Thank you for using the <a href="https://github.com/joshuaiz/plate" target="_blank">Plate</a> theme by <a href="https://studio.bio/" target="_blank">studio.bio</a>!</strong></p>'; 
-    echo '<p>You can add your own message(s) or HTML here. Edit the <code>plate_dashboard_widget_init()</code> function in <code>functions.php</code> at line 1225. Styles are in <code>admin.scss</code>. Or if you don\'t want or need this, just delete the function. Have it your way.</p>';
-    echo '<p>This is a great place for site instructions, links to help or resources, and to add your contact info for clients.</p>';
-    echo '<p>Make sure to remind them about the <code>Screen Options</code> tab on the top right. Often clients do not know about that and that they can show or hide or rearrange these Dashboard Widgets or show/hide boxes on any edit screen.</p>';
-    
-}
-
-
-// Live Reload for Grunt during development
-// If your site is running locally it will load the livereload js file into the footer. This makes it possible for the browser to reload after a change has been made. 
-if ( in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1')) ) {
-
-    function livereload_script() {
-
-    	wp_register_script('livereload', 'http://localhost:35729/livereload.js?snipver=1', null, false, true);
-    	wp_enqueue_script('livereload');
-
-    }
-  
-    add_action( 'wp_enqueue_scripts', 'livereload_script' );
-
-}
 
 ?>
