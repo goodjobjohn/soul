@@ -19,8 +19,9 @@
 				<h1><?php bloginfo('name'); ?></h1>
 				
 				<?php 
+				// set cookie to expire in 1 hour
 				$cookie_name = "animation_cookie"; 
-				// setcookie($cookie_name, "test", time() + 300, '/'); 
+				setcookie($cookie_name, "test", time()+3600, '/'); 
 				?>
 				<?php if(!isset($_COOKIE[$cookie_name])) { ?>
 				<?php get_template_part( 'templates/animate-logo'); ?>

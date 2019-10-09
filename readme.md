@@ -2,11 +2,14 @@
 
 Soul uses a stripped down version of the starter theme Plate by Joshua Michaels & Jon Iler for studio.bio
 
-Author: John Basham.
+Author: John Basham
 
 Codekit config file included.
 
 *******************************************************************
+
+### 1.4 2019-10-09
+- set a cookie so we can hide the homepage animation. expires after an hour
 
 ### 1.3 2019-05-23
 - changed blog background color (future: change this to template setting)

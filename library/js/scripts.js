@@ -219,7 +219,11 @@ for (let i=0; i<elements.length; i++) {
   new ResponsiveBackgroundImage(elements[i]);
 }
 
-// ANIMATION on HOME
+// HOMEPAGE ANIMATED LOGO
+// control for on load page animation
+// animation is embedded into the page and uses a cookie to run the animation once
+// cookie expires after an hour
+
 let animation = document.getElementById("lottie");
 
 if (animation) {
