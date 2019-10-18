@@ -105,18 +105,19 @@ nav {}
             position: absolute;
             z-index: 8999;
             visibility: hidden;
+            padding: 10px 0 0 0;
 
             li {
                 a {
                     &:hover,
-                    &:focus {}
+                    &:focus { border-bottom: 1px solid; }
                     &:link {}
                 }
 
                 &:first-child {}
                 &:last-child {
                     a {
-                        border-bottom: 0;
+                        
                     }
                 }
 

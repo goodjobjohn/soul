@@ -22,9 +22,8 @@
 
                     <?php $image = get_field('featured_image'); ?>
 
-                    <?php if (!empty($image)) : ?>
-
-                        <div class="featured-image" style="background-image: url(<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>);">
+                    <?php if (!empty($image)) : ?>               
+                        <div class="featured-image" style="background-image: url(<?php echo esc_url($image['sizes']['large']); ?>" alt="<?php echo esc_attr($image['alt']); ?>);">
 
                         </div>
 
