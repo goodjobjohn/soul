@@ -8,7 +8,7 @@ Codekit config file included.
 
 *******************************************************************
 
-### 1.4 2019-10-09 - 2019-10-18
+### 1.4.1 2019-10-09 - 2019-10-18
 - set a cookie so we can hide the homepage animation. expires after an hour
 - add promotion template and styles
 - added faq's template and styles
