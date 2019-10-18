@@ -1,6 +1,7 @@
 /******************************************************************
-Site Name:
-Author:
+
+Site Name: Soul
+Author: John Basham
 
 Stylesheet: Base Stylesheet
 
@@ -105,7 +106,7 @@ further. Using correct headings helps with readability, SEO, and accessibility.
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
     margin: 1.333em 0 0.5em;
     color: $white;
-    font-weight: bold;
+    font-weight: 400;
     line-height: 1.2;
     text-rendering: optimizelegibility;
     // etter-spacing: .1em;

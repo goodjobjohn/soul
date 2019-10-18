@@ -241,4 +241,59 @@ if (animation) {
 
 }
 
+// PROMOTION PAGE
+// events to control element interactions
+
+const tabButton = document.querySelector('.tabs');
+const enquireNowButton = document.querySelector('div.call-to-action button');
+
+function toggleTabPanel(e) {
+    
+    // clicking a tab
+    if(e.target.matches('.tab')) {
+
+        console.log(this.children);
+        // when a tab is clicked add .hide class to each panel element
+        let panels = document.querySelectorAll('.panels .panel');
+        for (let i = 0; i < panels.length; i++) {
+            panels[i].classList.add('hide');
+        }
+
+        // remove .active class on all tabs
+        let tabs = this.children;
+        for ( let i = 0; i < tabs.length; i++ ) {
+            tabs[i].classList.remove('active');
+        }
+        
+    }
+
+    // remove hide class on clicked tab
+    if(e.target.matches('.what')) {
+        const what = document.querySelector('.panel.what');
+        what.classList.remove('hide');
+        e.target.classList.add('active');
+    }
+    if(e.target.matches('.when')) {
+       const when = document.querySelector('.panel.when');
+        when.classList.remove('hide');
+        e.target.classList.add('active');
+    }
+    if(e.target.matches('.where')) {
+        const where = document.querySelector('.panel.where');
+        where.classList.remove('hide');
+        e.target.classList.add('active');
+    }
+}
+
+function revealForm(e) {    
+    // show/hide form when 'call to action' button is clicked
+    const form = document.querySelector('.call-to-action .form');
+    form.classList.toggle('hide');
+
+
+console.log('reveal form');
+}
+
+tabButton.addEventListener('click', toggleTabPanel);
+enquireNowButton.addEventListener('click', revealForm);
 

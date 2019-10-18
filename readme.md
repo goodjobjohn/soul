@@ -8,8 +8,12 @@ Codekit config file included.
 
 *******************************************************************
 
-### 1.4 2019-10-09
+### 1.4 2019-10-09 - 2019-10-18
 - set a cookie so we can hide the homepage animation. expires after an hour
+- add promotion template and styles
+- added faq's template and styles
+- added function to disable content editor on faq's and promotion template
+- added function 'modify_featured_image_labels' to change 'featured image' text in admin to 'background image'
 
 ### 1.3 2019-05-23
 - changed blog background color (future: change this to template setting)

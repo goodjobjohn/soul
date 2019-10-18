@@ -9,19 +9,19 @@
 
     <main id="main" class="main" role="main" itemscope itemprop="mainContentOfPage" itemtype="https://schema.org/Blog" data-responsive-background-image>
         
-            <?php 
+        <?php 
 
-                $id = get_option('page_for_posts');
-                $img = get_the_post_thumbnail($id,'full', array( 'class' => 'bg-swap' ));  
-                echo $img;
+        $id = get_option('page_for_posts');
+        $img = get_the_post_thumbnail($id,'full', array( 'class' => 'bg-swap' ));  
+        echo $img;
 
-                // WP_Query arguments
-                $args = array('post_type' => array( 'post' ),'posts_per_page' => -1);
+        // WP_Query arguments
+        $args = array('post_type' => array( 'post' ),'posts_per_page' => -1);
 
-                // The Query
-                $query = new WP_Query( $args );
+        // The Query
+        $query = new WP_Query( $args );
 
-            ?>      
+        ?>      
 
         <header class="page-header">
             
@@ -57,7 +57,7 @@
                         <?php if ( $featuredImage ){ ?>
                             
                             <footer class="article-footer">
-                                <?php echo get_the_post_thumbnail($query->id,'full', array( 'class' => 'featured' ));  ?>
+                                <?php echo get_the_post_thumbnail($query->id,'full', array( 'class' => 'featured' )); ?>
                             </footer>   
                         
                         <?php } ?>                                    

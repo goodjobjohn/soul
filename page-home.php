@@ -10,93 +10,98 @@
 
 <?php get_header(); ?>
 
-    <main id="main" class="main" role="main" itemscope itemprop="mainContentOfPage" itemtype="https://schema.org/Blog">
+<main id="main" class="main" role="main" itemscope itemprop="mainContentOfPage" itemtype="https://schema.org/Blog">
 
-        <article id="intro" <?php post_class(); ?> role="article" itemscope itemtype="https://schema.org/BlogPosting">
+	<article id="intro" <?php post_class(); ?> role="article" itemscope itemtype="https://schema.org/BlogPosting">
 
-            <header class="article-header">
-				
-				<h1><?php bloginfo('name'); ?></h1>
-				
-				<?php 
-				// set cookie to expire in 1 hour
-				$cookie_name = "animation_cookie"; 
-				setcookie($cookie_name, "test", time()+3600, '/'); 
-				?>
-				<?php if(!isset($_COOKIE[$cookie_name])) { ?>
-				<?php get_template_part( 'templates/animate-logo'); ?>
-				<?php } ?>
+		<header class="article-header">
 
-            </header> <?php // end header ?>
+			<h1><?php bloginfo('name'); ?></h1>
+
+			<?php
+			// Only load animation once per hour
+			// The cookie is set in functions 			
+			if (!isset($_COOKIE['homepage_loaded'])) {
+				get_template_part('templates/animate-logo');
+			}
 			
-			<section id="landing" class="landing" itemprop="articleBody" data-responsive-background-image>
-				
-				<span class="hero-text-1">
-					<h2 class="text-center sticky-50vh"><?php the_field('landing_first_sentence'); ?></h2>
-				</span>
-				
-				<img class="center-by-margin" src="<?php echo get_theme_file_uri(); ?>/library/images/boat.png">
-				
-				<span class="hero-text-2">
-					<h2 class="text-center sticky-50vh"><?php the_field('landing_second_sentence'); ?></h2>
-				</span>
-				
-				<?php				
-					$image = get_field('landing_background');
-					$size = 'full'; // (thumbnail, medium, large, full or custom size)
-				?>
-				<?php echo wp_get_attachment_image( $image['id'], $size,'', array( "class" => "bg-swap" )); ?>
-			
-			</section> <?php // end landing section ?>
+			?>
 
-            <section id="welcome" class="welcome" itemprop="articleBody" data-responsive-background-image>
-				
-				<div class="inner-container">
-					<span class="section-title">Welcome</span>                                
-					<?php the_field('welcome_text'); ?>
+		</header> <?php // end header 
+					?>
+
+		<section id="landing" class="landing" itemprop="articleBody" data-responsive-background-image>
+
+			<span class="hero-text-1">
+				<h2 class="text-center sticky-50vh"><?php the_field('landing_first_sentence'); ?></h2>
+			</span>
+
+			<img class="center-by-margin" src="<?php echo get_theme_file_uri(); ?>/library/images/boat.png">
+
+			<span class="hero-text-2">
+				<h2 class="text-center sticky-50vh"><?php the_field('landing_second_sentence'); ?></h2>
+			</span>
+
+			<?php
+			$image = get_field('landing_background');
+			$size = 'full'; // (thumbnail, medium, large, full or custom size)
+			?>
+			<?php echo wp_get_attachment_image($image['id'], $size, '', array("class" => "bg-swap")); ?>
+
+		</section> <?php // end landing section 
+					?>
+
+		<section id="welcome" class="welcome" itemprop="articleBody" data-responsive-background-image>
+
+			<div class="inner-container">
+				<span class="section-title">Welcome</span>
+				<?php the_field('welcome_text'); ?>
+			</div>
+
+			<?php
+			$image = get_field('welcome_background');
+			?>
+			<?php echo wp_get_attachment_image($image['id'], $size, '', array("class" => "bg-swap")); ?>
+
+		</section> <?php // end welcome section 
+					?>
+
+		<section id="process" class="process" itemprop="articleBody" data-responsive-background-image>
+
+			<div class="inner-container">
+				<span class="section-title">Process</span>
+				<?php the_field('process_text'); ?>
+			</div>
+
+			<?php $image = get_field('process_background'); ?>
+			<?php echo wp_get_attachment_image($image['id'], $size, '', array("class" => "bg-swap")); ?>
+
+		</section> <?php // end process section 
+					?>
+
+		<section id="about" class="about" itemprop="articleBody">
+
+			<div class="about-grid">
+				<div class="text dark">
+					<span class="section-title">About</span>
+					<?php the_field('about_text'); ?>
+					<a href="<?php echo esc_url(get_permalink(get_page_by_title('About'))); ?>" class="read-more text-right">Read More ></a>
 				</div>
-				
-				<?php 						
-					$image = get_field('welcome_background');		
-				?>
-				<?php echo wp_get_attachment_image( $image['id'], $size,'', array( "class" => "bg-swap" )); ?>
 
-            </section> <?php // end welcome section ?>
+				<?php $image = get_field('about_image'); ?>
+				<?php echo wp_get_attachment_image($image['id'], $size, '', array("class" => "image")); ?>
 
-			<section id="process" class="process" itemprop="articleBody" data-responsive-background-image>
-			
-				<div class="inner-container">
-					<span class="section-title">Process</span>
-					<?php the_field('process_text'); ?>
-				</div>
-			
-				<?php $image = get_field('process_background'); ?>
-				<?php echo wp_get_attachment_image( $image['id'], $size,'', array( "class" => "bg-swap" )); ?>
-			
-			</section> <?php // end process section ?>
+			</div>
 
-			<section id="about" class="about" itemprop="articleBody">
-				
-				<div class="about-grid">
-					<div class="text dark">
-						<span class="section-title">About</span>
-						<?php the_field('about_text'); ?>
-						<a href="<?php echo esc_url( get_permalink( get_page_by_title( 'About' ) ) ); ?>"  class="read-more text-right">Read More ></a>						
-					</div>
+		</section> <?php // end about section 
+					?>
 
-					<?php $image = get_field('about_image'); ?>
-					<?php echo wp_get_attachment_image( $image['id'], $size,'', array( "class" => "image" )); ?>
+		<footer class="article-footer">
 
-				</div>	
-				
-			</section> <?php // end about section ?>
+		</footer>
 
-            <footer class="article-footer">
+	</article>
 
-            </footer>
+</main>
 
-        </article>		
-
-	</main>
-	
 <?php get_footer(); ?>

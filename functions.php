@@ -536,7 +536,6 @@ function disable_emojicons_tinymce( $plugins ) {
     }
 }
 
-
 /* 
 * Dequeue jQuery Migrate
 * I'm commenting this out by default. Why? Because Gravity Forms *requires* it
@@ -596,8 +595,6 @@ function plate_excerpt_more($more) {
     // edit here if you like
     return '...  <a class="excerpt-read-more" href="'. get_permalink( $post->ID ) . '" title="'. __( 'Read ', 'platetheme' ) . esc_attr( get_the_title( $post->ID ) ).'">'. __( 'Read more >', 'platetheme' ) .'</a>';
 }
-
-
 
 /*********************
 THEME SUPPORT
@@ -1043,6 +1040,7 @@ function plate_custom_quicktags() {
 // Post Author function (from WP Twenty Seventeen theme)
 // We use this in the byline template part but included here in case you want to use it elsewhere.
 if ( ! function_exists( 'plate_posted_on' ) ) :
+
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
@@ -1063,7 +1061,58 @@ function plate_posted_on() {
 }
 endif;
 
+/** ------------------------------------------------
+ * Disable content editor for specific page template
+ * ------------------------------------------------- */
 
+function disable_content_editor() {
+    remove_post_type_support('page', 'editor');
 
+    // Restrict 'specific' page templates
 
+    // if (isset($_GET['post'])) {
+    //     $id = $_GET['post'];
+    //     $template = get_post_meta($id, '_wp_page_template', true);
+    //     switch ($template) {
+    //         case 'page-faqs.php':
+    //         case 'page-promotion.php':
+    //         break;
+    //         default :
+    //         // Don't remove any other template.
+    //         break;
+    //     }
+    // }
+}
+add_action('init', 'disable_content_editor');
+
+/** 
+ * Replace 'Featured Image' text in admin
+ */
+function modify_featured_image_labels( $labels ) {
+    $labels->featured_image = __( 'Page Background Image', 'textdomain' );
+    $labels->set_featured_image = __( 'Set Page Background Image', 'textdomain' );
+    $labels->remove_featured_image = __( 'Remove Page Background Image', 'textdomain' );
+    $labels->use_featured_image = __( 'Use as Page Background Image', 'textdomain' );
+  
+    return $labels;
+  }
+ add_filter( 'post_type_labels_page', 'modify_featured_image_labels', 10, 1 );
+
+ /**
+  * Set homepage cookie
+  * 
+  * Homepage template loads an animation on first view.
+  * This cookie stops the animation loading on refresh for an hour.
+  * Cookie is set when homepage is visited.
+  */
+  function set_homepage_cookie() {
+      if ( is_page_template('page-home.php') ) {
+        $cookie = "homepage_loaded";
+        if (!isset($_COOKIE[$cookie])) {
+            setcookie($cookie, "prevents animation loading", time()+3600);
+        }
+      }
+      
+  }
+  add_action( 'get_header', 'set_homepage_cookie' );
 ?>
