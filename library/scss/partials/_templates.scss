@@ -4,9 +4,18 @@
 .default {
     background-color: $mid-blue;
     .main {
-            padding: 150px 0;
+        .page-header {
+            height: 100vh;
+            padding: 0;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
         }
-
+        .grid {
+            
+        }
+    }
+   
     .page {
             max-width: 900px;
             margin: 0 auto;
@@ -175,7 +184,7 @@
 
     .grid {
         // grid-template-areas: 'posts posts posts posts posts . posts posts posts posts posts';
-        padding-top: 200px;
+        // padding-top: 200px;
     }
 
     .posts {
@@ -300,7 +309,7 @@
     }
 
     .article-footer {
-        padding: 0px 100px 90px 100px;
+        padding: 20px 100px 90px 100px;
     }
 }
 
@@ -540,12 +549,15 @@
     .tabs {
         width: 80%;
         margin: 100px auto 0;
+        display: flex;
 
         .tab {
             display: inline-block;
+            width: calc(100% / 3);
             font-weight: bold;
             cursor: pointer;
-            padding: 15px 30px;
+            padding: 15px 0;
+            text-align: center;
 
             &.active {
                 background-color: rgba(255, 255, 255, .17);
@@ -593,7 +605,8 @@
             cursor: pointer;
             border-radius: 20px;
             border: none;
-            width: 300px;
+            max-width: 300px;
+            width: 100%;
             margin: 50px auto 0;
 
             &:focus, &:hover { box-shadow: 0 0 5px rgba(255, 255, 255, .17); outline: none; }

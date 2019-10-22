@@ -1114,5 +1114,5 @@ function modify_featured_image_labels( $labels ) {
       }
       
   }
-  add_action( 'get_header', 'set_homepage_cookie' );
+  add_action( 'template_redirect', 'set_homepage_cookie' );
 ?>
