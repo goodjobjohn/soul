@@ -33,10 +33,8 @@
 		<section id="landing" class="landing" itemprop="articleBody" data-responsive-background-image>
 
 			<span class="hero-text-1">
-				<h2 class="text-center sticky-50vh"><?php the_field('landing_first_sentence'); ?></h2>
-			</span>
-
-			<img class="center-by-margin" src="<?php echo get_theme_file_uri(); ?>/library/images/boat.png">
+				<h2 class="text-center sticky-50vh "><?php the_field('landing_first_sentence'); ?></h2>
+			</span>			
 
 			<span class="hero-text-2">
 				<h2 class="text-center sticky-50vh"><?php the_field('landing_second_sentence'); ?></h2>

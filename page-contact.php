@@ -10,18 +10,14 @@
 
 <?php get_header(); ?>
 
-    <main id="main" class="main" role="main" itemscope itemprop="mainContentOfPage" itemtype="https://schema.org/Blog">
+    <main id="main" class="main" role="main" itemscope itemprop="mainContentOfPage" itemtype="https://schema.org/Blog" data-responsive-background-image>
+       
+        <?php echo get_the_post_thumbnail($post, 'full', array('class' => 'bg-swap'));  ?>
         
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article" itemscope itemtype="https://schema.org/BlogPosting">
-
-                <header class="article-header">
-                        
-                    <?php the_post_thumbnail('full'); ?>                    
-
-                </header>
-
+                <img class="center-by-margin" style="margin-bottom:100px;" src="<?php echo get_theme_file_uri(); ?>/library/images/boat.png" width="260px">
                 <section id="contact" class="contact-form" itemprop="contactForm">
 
                     <div class="text">
@@ -31,6 +27,8 @@
 
                 </section>
 
+                
+                
                 <section id="other" class="other" itemprop="contactDetails">
 
                     <div class="social">

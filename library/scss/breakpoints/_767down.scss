@@ -53,15 +53,33 @@ h6, .h6 {
 NAVIGATION STYLES
 *********************/
 
-nav {
-	position: relative;
+nav { position: relative; }
+
+.blog .top-nav a, .blog .top-nav a:visited {
+	color: #FFF;
 }
 
-.header-nav {
-	
-	.desktop {
-		display: none;
+.nav {
+		margin: 0;
+		padding: 0;
+		border-bottom: 0;
+		list-style-type: none;
+
+		li {
+
+			a {
+				padding: 0.2em;
+				text-decoration: none;
+			}
+		}
+		ul.sub-menu {
+			list-style: none;
+		}
 	}
+	
+.header-nav {
+		
+	.desktop { display: none; }
 	
 	// Start of two line hamburger
 	#menuToggle {
@@ -83,6 +101,7 @@ nav {
 		z-index: 2; /* and place it over the hamburger */
 		-webkit-touch-callout: none;
 	}
+	
 	// Hamburger lines
 	#menuToggle span {
 		display: block;
@@ -149,24 +168,6 @@ nav {
 	// And let's slide it in from the left
 	#menuToggle input:checked ~ ul {
 		transform: none;
-	}
-}
-
-.nav {
-	margin: 0;
-	padding: 0;
-	border-bottom: 0;
-	list-style-type: none;
-
-	li {
-
-		a {
-			padding: 0.2em;
-			text-decoration: none;
-		}
-	}
-	ul.sub-menu {
-		list-style: none;
 	}
 }
 

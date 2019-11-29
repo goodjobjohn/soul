@@ -53,7 +53,7 @@
                         <?php $imageCount = 1; ?>
                         <?php foreach ($gallery as $image) : ?>
 
-                            <a class="anchor" href="#img<?php echo $imageCount; ?>" style="background-image: url(<?php echo esc_url($image['sizes']['medium']); ?>);">
+                            <a class="anchor" href="#img<?php echo $imageCount; ?>" style="background-image: url(<?php echo esc_url($image['sizes']['large']); ?>);">
                                 <!-- <img class="thumbnail" src=""> -->
                             </a>
                             <?php $imageCount++; ?>
