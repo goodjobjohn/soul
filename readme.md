@@ -7,6 +7,7 @@ Author: John Basham
 Codekit config file included.
 
 - - -
+### 1.4.5 - fix large image size
 
 ### 1.4.4 2019-11-29
 * updated templates homepage, faq's, journeys, contact, maiden voyage (promotion)

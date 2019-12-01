@@ -52,12 +52,12 @@
                             </section> <?php // end article section ?>
                         </div>
 
-                        <?php $featuredImage = get_the_post_thumbnail($query->id,'full', array( 'class' => 'featured' )); ?>
+                        <?php $featuredImage = get_the_post_thumbnail($query->id,'large', array( 'class' => 'featured' )); ?>                       
                            
                         <?php if ( $featuredImage ){ ?>
                             
                             <footer class="article-footer">
-                                <?php echo get_the_post_thumbnail($query->id,'full', array( 'class' => 'featured' )); ?>
+                                <?php echo $featuredImage; ?>
                             </footer>   
                         
                         <?php } ?>                                    
