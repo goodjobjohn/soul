@@ -25,6 +25,9 @@
 
         <header class="page-header">
             
+            <div class="arch">
+                <img src="<?php echo get_theme_root_uri(); ?>/soul/library/images/arch.png">            
+            </div>
             <h1><?php the_field('title_tagline',$id); ?></h1>
 
         </header>

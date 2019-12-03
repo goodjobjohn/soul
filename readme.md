@@ -7,6 +7,10 @@ Author: John Basham
 Codekit config file included.
 
 - - -
+### 1.4.6 2019-12-3
+- fix mobile issue
+- update journal template
+
 ### 1.4.5 - fix large image size
 
 ### 1.4.4 2019-11-29

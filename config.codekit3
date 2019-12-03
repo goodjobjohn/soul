@@ -598,6 +598,27 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
+	"/library/images/arch.png": {
+		"ft": 32768,
+		"iS": 11696,
+		"oA": 0,
+		"oAP": "/library/images/arch.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
+	"/library/images/arch.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "/library/images/arch.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
 	"/library/images/boat.png": {
 		"ft": 32768,
 		"iS": 62636,
